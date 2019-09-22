@@ -4,10 +4,10 @@ class Location {
   String state;
   String city;
 
-  int maximumRadius;
+  int maximumRadiusInMiles;
 
-  String workplace;             //The current workplace that a user works at
-  String educationalInstituion; //The current place of education that a user is attending
+  String workplace;               //The current workplace that a user works at
+  String educationalInstitution;  //The current place of education that a user is attending
 
-  Location(this.country, this.state, this.city, this.maximumRadius, this.workplace, this.educationalInstitution);
+  Location(this.country, this.state, this.city, this.maximumRadiusInMiles, this.workplace, this.educationalInstitution);
 }
