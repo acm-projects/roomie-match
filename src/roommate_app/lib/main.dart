@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import "log_in_screen.dart";
 
 void main() => runApp(RoommateApp());
 
@@ -6,25 +7,13 @@ class RoommateApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, //This disables the debug banner that shows in the corner when running in debug mode on androids
       title: "Roomie Match",
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primaryColor: Colors.deepPurpleAccent,
       ),
-      home: LogInPage(),
-    );
-  }
-}
-
-//The main log in page
-class LogInPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      drawer: Drawer(),
-      body: Center(
-        child: const Text("Log In"),
-      ),
+      home:
+          LogInPage(), //The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
     );
   }
 }
