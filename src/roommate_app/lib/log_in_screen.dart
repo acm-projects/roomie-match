@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 //LogInPage contains all of the UI and functionality for the main landing page that requires users to log in
-class LogInPage extends StatelessWidget {
+class LogInScreen extends StatelessWidget {
   static const Color _FOREGROUND_WIDGET_COLOR = Colors.white;     //The color for foreground widgets such as TextField
   static const Color _BACKGROUND_COLOR = Colors.deepPurple;       //The color of the scaffold background
   static const double _WIDGET_PADDING = 7.0;                      //The padding size between foreground widgets
@@ -58,6 +58,9 @@ class LogInPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(_TEXT_FIELD_BORDER_SIZE),
                 ),
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(_WIDGET_PADDING),
             ),
             //The main button that initiates the user authorization process
             RaisedButton(
