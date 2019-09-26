@@ -1,4 +1,0 @@
-#Tue Sep 24 17:30:52 CDT 2019
-base.0=C\:\\Users\\Jack\\local-repos\\roomie-match\\src\\roommate_app\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
-path.0=classes.dex
-renamed.0=classes.dex
