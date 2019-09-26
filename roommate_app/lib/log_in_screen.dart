@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-//LogInPage contains all of the UI and functionality for the main landing page that requires users to log in
+//LogInScreen contains all of the UI and functionality for the main landing page that requires users to log in
 class LogInScreen extends StatelessWidget {
   static const Color _FOREGROUND_WIDGET_COLOR = Colors.white;     //The color for foreground widgets such as TextField
   static const Color _BACKGROUND_COLOR = Colors.deepPurple;       //The color of the scaffold background
@@ -18,7 +18,7 @@ class LogInScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            //Main text heading for the log in page
+            //Main text heading for the log in screen
             const Text(
               "Log In",
               style: TextStyle(
