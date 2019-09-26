@@ -39,7 +39,6 @@ class LogInScreen extends StatelessWidget {
                 //OutlineInputBorder allows for the creation of rounded borders
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(_TEXT_FIELD_BORDER_SIZE),
-
                 ),
               ),
             ),
