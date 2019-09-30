@@ -1,0 +1,58 @@
+Roommate Match Search Algorithm
+
+Objective:
+When a user is ready to match, the database will query all other users within the specified range
+and by desired gender.
+
+Pseudocode:
+
+class Profile:
+    contains the necessary members to store/organize
+
+class Coordinate:
+    member latitude
+    member longitude
+
+function getCoordinatesFromLocation(city, state):
+    get the html data from result link in https://www.wikidata.org/w/index.php?sort=relevance&search=city+state
+    
+    let coordinates = the text from the HTML class titled wikibase-kartographer-caption
+    let latitude = all text before the comma in coordinates
+    let longitude = all text after the comma in coordinates
+
+    let userCoordinates = new Coordinate
+    userCoordinates latitude = latitude
+    userCoordinates longitude = longitude
+
+    return userCoordinates
+end function
+
+function calculateDistance(Coordinates coordinate1, Coordinate coordinate2):
+    return distanceBetweenCoordinates
+end function
+
+function getListOfPossibleMatches:
+    let possibleMatchesList = a query of the user database and get all users within the user's selected country and desired gender
+    
+    declare list matches
+
+    let userRadius = the radius in miles chosen by the user
+    let userCity = the city chosen by the user
+    let userState = the state chosen by the user
+    let userCoordinates = getCoordinatesFromLocation()
+    
+    possibleMatchCounter = 0
+    while possibleMatchCounter < possibleMatchesList.length:
+        let possibleMatchCity = possibleMatchesList[counter].city
+        let possibleMatchState = possibleMatchesList[counter].state
+        let possibleMatchCoordinates = getCoordinatesFromLocation(possibleMatchCity, possibleMatchState)
+
+        let possibleMatchRadius = possibleMatchesList[counter].radius
+
+        possibleMatchDistance = calculateDistance(possibleMatchCoordinates, userCoordinates)
+        
+        if  possibleMatchRadius <= userRadius and possibleMatchDistance <= possibleMatchRadius
+            append a new profile object initialized with the possible match's data to the matches list
+
+    return matches
+end function
