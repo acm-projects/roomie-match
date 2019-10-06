@@ -1,7 +1,10 @@
 import "package:flutter/material.dart";
 import "log_in_screen.dart";
 
-void main() => runApp(RoommateApp());
+void main() {
+  runApp(RoommateApp());
+
+}
 
 class RoommateApp extends StatelessWidget {
   @override
