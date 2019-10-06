@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1020640413600",
+    "firebase_url": "https://roomie-match.firebaseio.com",
+    "project_id": "roomie-match",
+    "storage_bucket": "roomie-match.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1020640413600:android:e10a79326004f03769c6c5",
+        "android_client_info": {
+          "package_name": "com.example.roommate_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1020640413600-uvcju06ie08j3k9n76scardjdu7tmdii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB96xbyJ7Wg9660rlBkqeOAjZNH6dvklm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1020640413600-uvcju06ie08j3k9n76scardjdu7tmdii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
