@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
+import 'package:roommate_app/match_searcher.dart';
 import "log_in_screen.dart";
 
 void main() {
   runApp(RoommateApp());
-
 }
 
 class RoommateApp extends StatelessWidget {

@@ -4,13 +4,12 @@ import "gender.dart";
 import "dart:math";
 import "constants.dart";
 import "package:geocoder/geocoder.dart";
+import "package:cloud_firestore/cloud_firestore.dart";
 
 class MatchSearcher {
   String placeName;       //The name of the city that the searching user lives in
   int radius;             //The radius (in miles) that a user wants to search for matches in
   Gender preferredGender; //The preferred gender of the searching user
-
-  //TODO: implement querying firebase for user data to find matches
 
   MatchSearcher(this.placeName, this.radius, this.preferredGender);
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1020640413600-3visbq89inr8ejjptvfgfs0mnga48hif.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1020640413600-3visbq89inr8ejjptvfgfs0mnga48hif</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCM2uOotlQ4LGll4gT6-DndC96it7r8sbA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1020640413600</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com-example-roommate-app</string>
+	<key>PROJECT_ID</key>
+	<string>roomie-match</string>
+	<key>STORAGE_BUCKET</key>
+	<string>roomie-match.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1020640413600:ios:ab77e74b7b08c4d169c6c5</string>
+	<key>DATABASE_URL</key>
+	<string>https://roomie-match.firebaseio.com</string>
+</dict>
+</plist>
