@@ -4,18 +4,14 @@ their user data is pulled from Firebase and stored in a Profile object
 */
 import "location.dart";
 import "budget.dart";
-import "gender.dart";
-import "allergy.dart";
 import "temperature_range.dart";
 
 class Profile {
-  Gender gender;
+  String gender;
   int age;
-  //TODO: add cleanliness attribute
-  //TODO: add normal hours attribute
   int dailyHoursSpentInApartment;
   List<String> hobbies;
-  List<Allergy> allergies;
+  List<String> allergies;
   TemperatureRange idealTempuratureRange;
   Budget budget;
   List<String> dealBreakers;
