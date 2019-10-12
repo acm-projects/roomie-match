@@ -7,15 +7,16 @@ import "budget.dart";
 import "temperature_range.dart";
 
 class Profile {
+  String firstName;
+  String lastName;
   String gender;
   int age;
-  int dailyHoursSpentInApartment;
-  List<String> hobbies;
-  List<String> allergies;
-  TemperatureRange idealTempuratureRange;
-  Budget budget;
-  List<String> dealBreakers;
-  bool doesWantPets;
 
-  //TODO: create class constructor after filling in missing members
+  String preferredGender;
+
+  String city;
+  String state;  
+  int radius;
+
+  Profile(firstName, lastName, gender, age, preferredGender, city, state, radius);
 }

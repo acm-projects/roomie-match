@@ -1,5 +1,4 @@
 //This class is used to search for matches given a user's gender and location preferences
-
 import 'package:roommate_app/profile.dart';
 import "dart:math";
 import "constants.dart";
@@ -18,9 +17,13 @@ class MatchSearcher {
   CollectionReference userDataCollection = Firestore.instance.collection(kUSER_INFO_COLLECTION_NAME);
 
   //This method returns a list of matched profiles
-  List<Profile> getMatches() {
+  List<Profile> findMatches() {
     Coordinates searchingUserCoordinates; //The coordinates of the searching user
     Coordinates possibleMatchCoordinates; //The coordinates of a potential match
+
+    int possibleMatchRadius;              //The search radius of a possible match
+
+    List<Profile> matches;
 
     //Asynchronously obtain the searching user's coordinates
     Future<Coordinates> searchingUserCoordinatesFuture = _getCoordinatesFromPlaceName(this.placeName);
@@ -38,7 +41,10 @@ class MatchSearcher {
         for (DocumentSnapshot documentSnapshot in querySnapshot.documents) {
           //Creating a string to pass into the _getCoordinatesFromPlacename method to get the potential matche's coordinates
           String possibleMatchPlaceName = documentSnapshot.data["state"] + " " + documentSnapshot.data["city"];        
-        
+
+          //Get the possible match's radius
+          possibleMatchRadius = documentSnapshot.data["radius"];
+
           //Asynchronously obtain the possible matches's coordinates
           Future<Coordinates> possibleMatchCoordinatesFuture = _getCoordinatesFromPlaceName(possibleMatchPlaceName);
           possibleMatchCoordinatesFuture.then((Coordinates coordinates) {
@@ -48,8 +54,24 @@ class MatchSearcher {
           //Calculate the distance between the searching user and possible match user
           double distance = _calculateDistance(searchingUserCoordinates, possibleMatchCoordinates); 
           
+          //If the possible match is within the searching user's radius and the possible match radius does not exceed the searching user radius...
+          if (distance <= this.radius && possibleMatchRadius <= this.radius) {
+              //...gather the matche's info from Firestore...
+              String matchFirstName = documentSnapshot.data["first-name"];
+              String matchLastName = documentSnapshot.data["last-name"];
+              String matchGender = documentSnapshot.data["gender"];
+              int matchAge = documentSnapshot.data["age"];
+              String matchPreferredGender = documentSnapshot.data["perferred-gender"];
+              String matchCity = documentSnapshot.data["city"];
+              String matchState = documentSnapshot.data["state"];
+              int matchRadius = documentSnapshot.data["radius"];
+
+              //...and add a new profile object containing that data to the matches list
+              matches.add(Profile(matchFirstName, matchLastName, matchGender, matchAge, matchPreferredGender, matchCity, matchState, matchRadius));
+          }
         }
       });
+      return matches;
   }
 
   //This method gets the exact coordinates of a place's location
