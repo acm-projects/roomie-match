@@ -1,9 +1,15 @@
 //This screen will present the user with a prompt to find matches and a button that starts the matching process
 import "package:flutter/material.dart";
+import 'package:geolocator/geolocator.dart';
 import "constants.dart";
 import 'loading_matches_screen.dart';
 
 class FindMatchesScreen extends StatelessWidget {
+
+  String testCity = "Allen";
+  String testState = "Texas";
+  String testPreferredGender = "male";
+  int testRadius = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +44,13 @@ class FindMatchesScreen extends StatelessWidget {
                 padding: EdgeInsets.all(20.0)
               ),
               RaisedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoadingMatchesScreen()),
-                  );
+                onPressed: () async {
+                  ///Navigator.push(
+                    //context,
+                    //MaterialPageRoute(builder: (context) => LoadingMatchesScreen(testCity, testState, testPreferredGender, testRadius)),
+                  ///);
+                  List<Placemark> placemark = await Geolocator().placemarkFromAddress("richardson texas");
+                  print(placemark.first.position.toString());
                 },
                 color: kPRIMARY_COLOR,
                 child: const Text(

@@ -15,7 +15,16 @@ class LoadingMatchesScreen extends StatelessWidget {
 
     //Create an instance of MatchSearcher, find matches, and store them as a list of profiles
     MatchSearcher matchSearcher = MatchSearcher(placeName,  this.searchingUserState, this.searchingUserRadiusInMiles, this.searchingUserPreferredGender);
-    List<Profile> matches = matchSearcher.findMatches();
+    matchSearcher.findMatches().then((matches) {
+      print("MATCHES: " + matches.toString());
+    });
+
+    
+    //DEBUG: print found profiles
+    //for (Profile profile in matches)
+    //{
+      //print(profile.firstName);
+    //}
   }
 
   @override
