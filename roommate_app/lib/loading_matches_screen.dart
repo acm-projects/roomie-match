@@ -19,7 +19,6 @@ class LoadingMatchesScreen extends StatelessWidget {
       print("MATCHES: " + matches.toString());
     });
 
-    
     //DEBUG: print found profiles
     //for (Profile profile in matches)
     //{
