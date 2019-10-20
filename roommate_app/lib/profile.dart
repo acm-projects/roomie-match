@@ -18,5 +18,5 @@ class Profile {
   String state;  
   int radius;
 
-  Profile(firstName, lastName, gender, age, preferredGender, city, state, radius);
+  Profile(this.firstName, this.lastName, this.gender, this.age, this.preferredGender, this.city, this.state, this.radius);
 }
