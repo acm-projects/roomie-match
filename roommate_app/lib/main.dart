@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:roommate_app/match_searcher.dart";
 import "log_in_screen.dart";
+import "screens/login_screen.dart";
 
 //Test import
 import "package:cloud_firestore/cloud_firestore.dart"; 
@@ -34,7 +35,7 @@ class RoommateApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
       ),
       home:
-          LogInScreen(), //The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
+          LoginScreen(), //The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
     );
   }
 }
