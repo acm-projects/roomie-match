@@ -23,7 +23,7 @@ class SignupScreen extends StatelessWidget {
               child: Container(
                 child: Text("Sign up",
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 25.0,
                     fontWeight: FontWeight.bold,
                   ),),
                 alignment: Alignment.centerLeft,

@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
             child: Container(
               child: Text("Log in",
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: 25.0,
                     fontWeight: FontWeight.bold,
                   ),),
               alignment: Alignment.centerLeft,
