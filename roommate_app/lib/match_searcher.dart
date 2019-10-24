@@ -19,7 +19,7 @@ class MatchSearcher {
   CollectionReference userDataCollection = Firestore.instance.collection(kUSER_INFO_COLLECTION_NAME);
 
   //This method returns a list of matched profiles
-  Future<dynamic> findMatches() async {
+  Future<List<Profile>> findMatches() async {
     Position searchingUserCoordinates;        //The coordinates of the searching user
     Position possibleMatchCoordinates;        //The coordinates of a potential match
 
@@ -40,7 +40,6 @@ class MatchSearcher {
           //Creating a string to pass into the _getCoordinatesFromPlacename method to get the potential matche's coordinates
           String possibleMatchPlaceName = documentSnapshot.data["state"] + " " + documentSnapshot.data["city"];        
 
-          //TODO: nest this stuff in .then
           //Wait for the coordinates of the possible match
           possibleMatchCoordinates = await _getCoordinatesFromPlaceName(possibleMatchPlaceName);
 
@@ -57,7 +56,7 @@ class MatchSearcher {
           //If the possible match is within the searching user's radius and the possible match radius does not exceed the searching user radius...
           if (distance <= this.radius && distance <= possibleMatchRadius) {
               print("FOUNDMATCH");
-              //...gather the matche's info from Firestore...
+              //...gather the match's info from Firestore...
               String matchFirstName = documentSnapshot.data["first-name"];
               String matchLastName = documentSnapshot.data["last-name"];
               String matchGender = documentSnapshot.data["gender"];
@@ -71,9 +70,12 @@ class MatchSearcher {
               matches.add(Profile(matchFirstName, matchLastName, matchGender, matchAge, matchPreferredGender, matchCity, matchState, matchRadius));
           }
         }
+      }).then((dummyVar) {
+        for (Profile match in matches) {
+          print(match.firstName);
+        }
       });
-      
-      
+      return matches;
   }
 
   //This method gets the exact coordinates of a place's location

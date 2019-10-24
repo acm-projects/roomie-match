@@ -7,12 +7,6 @@ import 'loading_matches_screen.dart';
 import "package:roommate_app/match_searcher.dart";
 
 class FindMatchesScreen extends StatelessWidget {
-
-  String testCity = "Allen";
-  String testState = "Texas";
-  String testPreferredGender = "male";
-  int testRadius = 5;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,16 +41,7 @@ class FindMatchesScreen extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () async {
-                  ///Navigator.push(
-                    //context,
-                    //MaterialPageRoute(builder: (context) => LoadingMatchesScreen(testCity, testState, testPreferredGender, testRadius)),
-                  ///);
-                  
-                  //Testing geolocator
-                  //List<Placemark> placemark = await Geolocator().placemarkFromAddress("richardson texas");
-                  //print(placemark.first.position.toString());
-
-                  //Testing .findMatched() method
+                  //Dummy profile
                   Profile testProfile = Profile(
                     "John",
                     "Test",
@@ -67,12 +52,11 @@ class FindMatchesScreen extends StatelessWidget {
                     "Texas",
                     10
                   );
-                  String testPlaceName = testProfile.city + testProfile.state;
-
-                  MatchSearcher ms = MatchSearcher(testPlaceName, testProfile.state, testProfile.radius, testProfile.preferredGender);
                   
-                  ms.findMatches().then((matches) => print("MATCHES $matches"));
-                  
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoadingMatchesScreen(testProfile.city, testProfile.state, testProfile.preferredGender, testProfile.radius)),
+                  );
                 },
                 color: kPRIMARY_COLOR,
                 child: const Text(
