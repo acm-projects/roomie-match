@@ -25,7 +25,6 @@ class RoommateApp extends StatelessWidget {
         fontFamily: 'Poppins',
         primaryColor: Colors.deepPurpleAccent,
       ),
-
       home:
           FindMatchesScreen(), //The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
     );
