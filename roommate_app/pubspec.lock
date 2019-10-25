@@ -83,17 +83,53 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_range_slider:
+    dependency: "direct main"
+    description:
+      name: flutter_range_slider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
-  geocoder:
+  geolocator:
     dependency: "direct main"
     description:
-      name: geocoder
+      name: geolocator
       url: "https://pub.dartlang.org"
     source: hosted
+    version: "5.1.4+1"
+  google_api_availability:
+    dependency: transitive
+    description:
+      name: google_api_availability
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.4"
+  location_permissions:
+    dependency: transitive
+    description:
+      name: location_permissions
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+<<<<<<< HEAD
     version: "0.2.1"
   image:
     dependency: transitive
@@ -101,6 +137,8 @@ packages:
       name: image
       url: "https://pub.dartlang.org"
     source: hosted
+=======
+>>>>>>> 6291abc8b3fde4d8f558f2db31ba4effae309b4f
     version: "2.1.4"
   matcher:
     dependency: transitive
