@@ -123,23 +123,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
-  image:
-    dependency: transitive
-    description:
-      name: image
-      url: "https://pub.dartlang.org"
-    source: hosted
-<<<<<<< HEAD
-    version: "0.2.1"
-  image:
-    dependency: transitive
-    description:
-      name: image
-      url: "https://pub.dartlang.org"
-    source: hosted
-=======
->>>>>>> 6291abc8b3fde4d8f558f2db31ba4effae309b4f
-    version: "2.1.4"
   matcher:
     dependency: transitive
     description:
