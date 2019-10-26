@@ -6,7 +6,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white10,
+          backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: IconButton(
             onPressed: (){
@@ -61,6 +61,8 @@ class LoginScreen extends StatelessWidget {
           ),
           FlatButton(
             onPressed: (){},
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
             child: Text("Forgot password?",
             style: TextStyle(
               color: Colors.deepPurpleAccent,

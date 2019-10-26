@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:roommate_app/loading_matches_screen.dart';
 import "package:roommate_app/match_searcher.dart";
 import 'package:roommate_app/screens/aboutme.dart';
+import 'package:roommate_app/screens/preferences.dart';
 import "log_in_screen.dart";
 import "find_matches_screen.dart";
 import "constants.dart";
@@ -26,7 +27,7 @@ class RoommateApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
       ),
       home:
-          FindMatchesScreen(), //The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
+          PreferencesScreen(), //The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
     );
   }
 }
