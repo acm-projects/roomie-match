@@ -39,21 +39,9 @@ class FindMatchesScreen extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () async {
-                  //Dummy profile
-                  Profile testProfile = Profile(
-                    "John",
-                    "Test",
-                    "male",
-                    35,
-                    "male",
-                    "Allen",
-                    "Texas",
-                    10
-                  );
-                  
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoadingMatchesScreen(testProfile.city, testProfile.state, testProfile.preferredGender, testProfile.radius)),
+                    MaterialPageRoute(builder: (context) => LoadingMatchesScreen()),
                   );
                 },
                 color: kPRIMARY_COLOR,

@@ -1,23 +1,19 @@
 import "package:flutter/material.dart";
 import 'package:roommate_app/match_searcher.dart';
 import "../constants.dart";
+import "package:roommate_app/user_info.dart";
 
 class LoadingMatchesScreen extends StatelessWidget {
-  final String searchingUserCity;             //The city of the searching user
-  final String searchingUserState;            //The state of the searching user
-  final String searchingUserPreferredGender;  //The preferred gender of the searching user
-  final int searchingUserRadiusInMiles;       //The desired radius of matches of the searching user                
-
-  LoadingMatchesScreen(this.searchingUserCity, this.searchingUserState, this.searchingUserPreferredGender, this.searchingUserRadiusInMiles) {
+  LoadingMatchesScreen() {
     //Create placeName, a variable that holds a string that will hold a search string for finding the user's location
-    String placeName = this.searchingUserCity + " " + this.searchingUserState;
+    String placeName = city + " " + state;
 
     //Create an instance of MatchSearcher, find matches, and store them as a list of profiles
-    MatchSearcher matchSearcher = MatchSearcher(placeName,  this.searchingUserState, this.searchingUserRadiusInMiles, this.searchingUserPreferredGender);
+    MatchSearcher matchSearcher = MatchSearcher(placeName,  state, radius, preferredGender);
     matchSearcher.findMatches().then((matches) {
+      //TODO: nagivate to matches screen
       print("MATCHES: " + matches.toString());
     });
-    print ("AFTER MATCHES");
   }
 
   @override

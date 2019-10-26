@@ -1,6 +1,5 @@
 //This class is used to search for matches given a user's gender and location preferences
 import 'dart:async';
-
 import 'package:roommate_app/profile.dart';
 import "dart:math";
 import "constants.dart";

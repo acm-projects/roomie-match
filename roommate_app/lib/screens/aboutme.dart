@@ -29,7 +29,8 @@ class AboutMeScreen extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 25.0,
                   fontWeight: FontWeight.bold,
-                ),),
+                  ),
+                ),
               alignment: Alignment.centerLeft,
             ),
           ),

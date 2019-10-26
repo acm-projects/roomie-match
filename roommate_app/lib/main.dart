@@ -1,11 +1,5 @@
 import "package:flutter/material.dart";
-import 'package:roommate_app/screens/signup.dart';
-import "screens/find_matches_screen.dart";
-import "package:roommate_app/match_searcher.dart";
-import 'package:roommate_app/screens/aboutme.dart';
-import 'package:roommate_app/screens/preferences.dart';
-import "constants.dart";
-import "screens/login.dart";
+import 'package:roommate_app/screens/home_screen.dart';
 
 void main() {
   runApp(RoommateApp());
@@ -22,7 +16,7 @@ class RoommateApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
       ),
       home:
-          LoginScreen()//The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
+          HomeScreen()//The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
     );
   }
 }
