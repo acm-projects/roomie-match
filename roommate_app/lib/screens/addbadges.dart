@@ -8,7 +8,7 @@ class AddBadgesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white10,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: IconButton(
           onPressed: (){
@@ -26,7 +26,7 @@ class AddBadgesScreen extends StatelessWidget {
           FlatButton(
             child: Text("Go to preferences"),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PreferencesScreen("PLACE HOLDER")
+              Navigator.push(context, MaterialPageRoute(builder: (context) => PreferencesScreen()
               ));
             }
           )
