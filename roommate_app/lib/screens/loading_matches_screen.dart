@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:roommate_app/match_searcher.dart';
-import "constants.dart";
-import "profile.dart";
+import "../constants.dart";
 
 class LoadingMatchesScreen extends StatelessWidget {
   final String searchingUserCity;             //The city of the searching user

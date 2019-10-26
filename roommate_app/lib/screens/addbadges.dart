@@ -26,7 +26,7 @@ class AddBadgesScreen extends StatelessWidget {
           FlatButton(
             child: Text("Go to preferences"),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => PreferencesScreen()
+              Navigator.push(context, MaterialPageRoute(builder: (context) => PreferencesScreen("PLACE HOLDER")
               ));
             }
           )

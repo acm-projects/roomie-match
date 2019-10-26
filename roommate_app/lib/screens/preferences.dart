@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'addbadges.dart';
 
 class PreferencesScreen extends StatefulWidget {
+  String _uid;  //The uid of the user that just created their account
+
+  PreferencesScreen(this._uid);
+
   @override
-  _PreferencesScreenState createState() => _PreferencesScreenState();
+  _PreferencesScreenState createState() => _PreferencesScreenState(this._uid);
 }
 
 class _PreferencesScreenState extends State<PreferencesScreen> {
@@ -13,6 +17,9 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
 
   int _age = 18;
   int _distance = 0;
+
+  String _uid;
+  _PreferencesScreenState(this._uid);
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,41 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatelessWidget {
+  TextEditingController emailTextController = TextEditingController();
+  TextEditingController passwordTextController = TextEditingController();
+
+  void _showLoginAlertDialog(BuildContext context, String message) {
+    Widget okButton = FlatButton(
+      child: Text(
+        "Ok",
+        style: TextStyle(
+          color: Colors.deepPurpleAccent
+        )
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      }
+    );
+
+    AlertDialog loginAlertDialog = AlertDialog(
+      title: Text("Error"),
+      content: Text(message),
+      actions: [okButton]
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return loginAlertDialog;
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,6 +43,7 @@ class LoginScreen extends StatelessWidget {
           backgroundColor: Colors.white10,
           elevation: 0.0,
           leading: IconButton(
+            //X button
             onPressed: (){
               Navigator.pop(context);
             },
@@ -35,7 +70,9 @@ class LoginScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            //Email text field
             child: TextField(
+              controller: emailTextController,
               obscureText: false,
               decoration: InputDecoration(
                 hintText: "Email",
@@ -48,7 +85,9 @@ class LoginScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            //Password text field
             child: TextField(
+              controller: passwordTextController,
               obscureText: true,
               decoration: InputDecoration(
                 hintText: "Password",
@@ -59,6 +98,7 @@ class LoginScreen extends StatelessWidget {
           SizedBox(
             height: 10.0,
           ),
+          //Forgot password button
           FlatButton(
             onPressed: (){},
             child: Text("Forgot password?",
@@ -72,9 +112,39 @@ class LoginScreen extends StatelessWidget {
           Container(
             width: 280.0,
             height: 60.0,
+            //Log in button
             child: FlatButton(
-              onPressed: (){
-                },
+              onPressed: () async {
+                String email = emailTextController.text;
+                String password = passwordTextController.text;
+
+                //Check to make sure neither the email or password fields are blank
+                if (email.length == 0 || password.length == 0) {
+                  _showLoginAlertDialog(context, "Neither the email or password fields can be left blank");
+                  return;
+                }
+
+                //Trim whitespace off of email string
+                email = email.trim();
+
+                //Try to log the user in 
+                final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+                await _firebaseAuth.signInWithEmailAndPassword(
+                  email: email,
+                  password: password
+                ).then((authResult) {
+                  //Process the gotten user auth info
+                  FirebaseUser user = authResult.user;
+                  print("UID: ${user.uid}");
+
+                  //Gather the user's info from firestore
+
+                  //Navigate to the home screen
+                }).catchError((_) {
+                  _showLoginAlertDialog(context, "Invalid email or password");
+                });
+                
+              },
               child: Text("Log in", style: TextStyle(
                 color: Colors.white,
                 fontSize: 18.0,

@@ -1,10 +1,8 @@
 //This screen will present the user with a prompt to find matches and a button that starts the matching process
 import "package:flutter/material.dart";
-import 'package:geolocator/geolocator.dart';
 import 'package:roommate_app/profile.dart';
-import "constants.dart";
+import "../constants.dart";
 import 'loading_matches_screen.dart';
-import "package:roommate_app/match_searcher.dart";
 
 class FindMatchesScreen extends StatelessWidget {
   @override
