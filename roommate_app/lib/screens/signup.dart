@@ -5,7 +5,7 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white10,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: IconButton(
           onPressed: (){
@@ -56,7 +56,19 @@ class SignupScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 100.0,
+              height: 10.0,
+            ),
+            FlatButton(
+              onPressed: (){},
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              child: Text("",
+                  style: TextStyle(
+                    color: Colors.deepPurpleAccent,
+                  )),
+            ),
+            SizedBox(
+              height: 40.0,
             ),
             Container(
               width: 280.0,
