@@ -46,6 +46,7 @@ class LoginScreen extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: Icon(Icons.close),
+            iconSize: 35,
             color: Colors.black,
           ),
         ),
