@@ -1,8 +1,8 @@
+//This screen lets user create a new account if they do not already have one
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import "dart:developer";
-
-import 'package:roommate_app/screens/preferences.dart';
+import 'package:roommate_app/user_info.dart';
 
 class SignupScreen extends StatelessWidget {
   TextEditingController emailTextController = TextEditingController();
@@ -33,7 +33,7 @@ class SignupScreen extends StatelessWidget {
         return loginAlertDialog;
       }
     );
-  }
+  } //end method _showLoginAlertDialog
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +135,9 @@ class SignupScreen extends StatelessWidget {
                   ).then((authResult) {
                     //Process the created user auth info
                     FirebaseUser user = authResult.user;
+
+                    //Write the user's UID to the user info abastract class
+                    UserInformation.uid = user.uid;
 
                     //TODO: go to the profile screen
                   }).catchError((_) {

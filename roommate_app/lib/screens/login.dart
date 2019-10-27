@@ -1,7 +1,5 @@
-import 'dart:developer';
-
+//This screen lets users log in to their existing account
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

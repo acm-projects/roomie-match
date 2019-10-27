@@ -56,17 +56,19 @@ class MatchSearcher {
           if (distance <= this.radius && distance <= possibleMatchRadius) {
               print("FOUNDMATCH");
               //...gather the match's info from Firestore...
+              List<String> matchBadges = documentSnapshot.data["badges"];
               String matchFirstName = documentSnapshot.data["first-name"];
               String matchLastName = documentSnapshot.data["last-name"];
               String matchGender = documentSnapshot.data["gender"];
               int matchAge = documentSnapshot.data["age"];
+              String matchAboutMe = documentSnapshot.data["about-me"];
               String matchPreferredGender = documentSnapshot.data["perferred-gender"];
               String matchCity = documentSnapshot.data["city"];
               String matchState = documentSnapshot.data["state"];
-              int matchRadius = documentSnapshot.data["radius"];
+
 
               //...and add a new profile object containing that data to the matches list
-              matches.add(Profile(matchFirstName, matchLastName, matchGender, matchAge, matchPreferredGender, matchCity, matchState, matchRadius));
+              matches.add(Profile(matchBadges, matchFirstName, matchLastName, matchGender, matchAge, matchAboutMe, matchPreferredGender, matchCity, matchState));
           }
         }
       }).then((dummyVar) {

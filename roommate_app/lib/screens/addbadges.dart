@@ -1,3 +1,4 @@
+//This screen lets the user pick badges that will be displayed on their profile
 import 'package:flutter/material.dart';
 import 'package:roommate_app/screens/preferences.dart';
 import 'aboutme.dart';

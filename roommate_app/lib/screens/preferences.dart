@@ -1,3 +1,4 @@
+//This screen will let the user pick basic info like age range, distance, and gender preference
 import 'package:flutter/material.dart';
 import 'addbadges.dart';
 import 'dart:math' as math;

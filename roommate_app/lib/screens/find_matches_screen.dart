@@ -1,6 +1,5 @@
 //This screen will present the user with a prompt to find matches and a button that starts the matching process
 import "package:flutter/material.dart";
-import 'package:roommate_app/profile.dart';
 import "../constants.dart";
 import 'loading_matches_screen.dart';
 

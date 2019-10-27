@@ -1,16 +1,22 @@
-String uid;             //The UID as used for Firebase/Firestore entry relations
-List<String> matches;   //UID's of people that the user has matched with
-List<String> badges;    //The badges that the user has selected; stored as the names of the icons internally
-String firstName;       //The user's first name
-String lastName;        //The user's last name
-String gender;          //The user's gender
-int age;                //The user's age
-String aboutMe;         //The user's bio description
+/*
+This class holds all of the information of the current user; 
+used so that there is easy access to the user's info anwhere in the project.
+*/
+abstract class UserInformation {
+  static String uid;             //The UID as used for Firebase/Firestore entry relations
+  static List<String> matches;   //UID's of people that the user has matched with
+  static List<String> badges;    //The badges that the user has selected; stored as the names of the icons internally
+  static String firstName;       //The user's first name
+  static String lastName;        //The user's last name
+  static String gender;          //The user's gender
+  static int age;                //The user's age
+  static String aboutMe;         //The user's bio description
 
-String preferredGender; //The preferred gender of the user
-int preferredAgeLower;  //The lower bound of the user's preferred age range
-int preferredAgeUpper;  //The upper bound of the user's preferred age range
+  static String preferredGender; //The preferred gender of the user
+  static int preferredAgeLower;  //The lower bound of the user's preferred age range
+  static int preferredAgeUpper;  //The upper bound of the user's preferred age range
 
-String city;            //The city that the user lives in
-String state;           //The state that the user lives in
-int radius;             //The radius that the user wants to search in
+  static String city;            //The city that the user lives in
+  static String state;           //The state that the user lives in
+  static int radius;             //The radius that the user wants to search in
+}
