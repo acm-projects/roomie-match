@@ -7,7 +7,7 @@ import 'aboutme.dart';
 import 'preferences.dart';
 
 abstract class BadgeSelectionInformation {
-  static final int MAX_NUMBER_BADGES = 4; //The maximum number of badges that can be selected
+  static final int MAX_NUMBER_BADGES = 5; //The maximum number of badges that can be selected
   static List<String> badges = List();    //A list of file paths containing the selected bages
 }
 
@@ -67,6 +67,13 @@ class AddBadgesScreen extends StatelessWidget {
               color: Colors.deepPurpleAccent),
             iconSize: 40.0,
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          //TODO: navigate to location page
+        },
+        child: Icon(Icons.check),
+        backgroundColor: Colors.deepPurpleAccent
       ),
       //Main list view for organizing widgets
       body: ListView(
