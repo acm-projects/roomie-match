@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:roommate_app/screens/location_entry_screen.dart';
 import 'package:roommate_app/screens/preferences.dart';
 import 'aboutme.dart';
 import 'preferences.dart';
@@ -58,9 +59,12 @@ class AddBadgesScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
+        //Back button -- goes to about me screen
         leading: IconButton(
           onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AboutMeScreen()
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (context) => AboutMeScreen()
             ));
           },
           icon: Icon(Icons.chevron_left,
@@ -70,9 +74,12 @@ class AddBadgesScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //TODO: navigate to location page
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LocationEntryScreen())
+          );
         },
-        child: Icon(Icons.check),
+        child: Icon(Icons.arrow_forward),
         backgroundColor: Colors.deepPurpleAccent
       ),
       //Main list view for organizing widgets
@@ -80,14 +87,12 @@ class AddBadgesScreen extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.all(15),
-            child: Align(
-              alignment: Alignment.center,
-                child: Text("Add Badges",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                    ),
-                  ),
+            child: Text(
+              "Add Badges",
+                style: TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Padding(

@@ -1,5 +1,6 @@
 //This screen will let the user pick basic info like age range, distance, and gender preference
 import 'package:flutter/material.dart';
+import 'package:roommate_app/screens/location_entry_screen.dart';
 import 'addbadges.dart';
 import 'dart:math' as math;
 
@@ -66,10 +67,13 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
+        //Back button -- goes to location entry screen
         leading: IconButton(
           onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) => AddBadgesScreen()
-            ));
+            Navigator.push(
+              context, 
+              MaterialPageRoute(builder: (context) => LocationEntryScreen())
+            );
           },
           icon: Icon(Icons.chevron_left,
               color: Colors.deepPurpleAccent),
