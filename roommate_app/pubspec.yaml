@@ -49,7 +49,9 @@ flutter:
         - asset: fonts/Poppins-Medium.ttf
 
   assets:
-    - images/
+    - assets/images/
+    - assets/images/badges/
+    - assets/images/badges/sports/
 
   uses-material-design: true
 
