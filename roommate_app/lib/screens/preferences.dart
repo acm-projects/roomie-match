@@ -100,7 +100,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
                     ChoiceChip(
                       selectedColor: Colors.deepPurpleAccent,
                       labelPadding: EdgeInsets.all(10.0),
-                      label: Image.asset('images/man.png',
+                      label: Image.asset('assets/images/man.png',
                         scale: 10,),
                       selected: _isSelected1,
                       onSelected: (isSelected) {
@@ -119,7 +119,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
                     ChoiceChip(
                       selectedColor: Colors.deepPurpleAccent,
                       labelPadding: EdgeInsets.all(10.0),
-                      label: Image.asset('images/woman.png',
+                      label: Image.asset('assets/images/woman.png',
                         scale: 10,),
                       selected: _isSelected2,
                       onSelected: (isSelected) {
@@ -138,7 +138,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
                     ChoiceChip(
                       selectedColor: Colors.deepPurpleAccent,
                       labelPadding: EdgeInsets.all(10.0),
-                      label: Image.asset('images/bigender.png',
+                      label: Image.asset('assets/images/bigender.png',
                         scale: 10,),
                       selected: _isSelected3,
                       onSelected: (isSelected) {
