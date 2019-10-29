@@ -100,7 +100,7 @@ class AddBadgesScreen extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Sports/activities",
+                "Sports/Activities",
                 style: TextStyle(
                     fontSize: 15
                   )
@@ -150,38 +150,84 @@ class AddBadgesScreen extends StatelessWidget {
                 ),
               ),
             ),
-            //Religion badges
+          //Religion badges
           GridView.count(
             crossAxisCount: 4,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
             children: <Widget>[
               //Religion icons
-              //TODO: replace these with religious icons
-              BadgeButton("assets/images/badges/sports/american-football.png"),
-              BadgeButton("assets/images/badges/sports/archery.png"),
-              BadgeButton("assets/images/badges/sports/baseball.png"),
-              BadgeButton("assets/images/badges/sports/basketball-1.png"),
-              BadgeButton("assets/images/badges/sports/boxing-1.png"),
-              BadgeButton("assets/images/badges/sports/chess.png"),
-              BadgeButton("assets/images/badges/sports/cricket.png"),
-              BadgeButton("assets/images/badges/sports/curling.png"),
-              BadgeButton("assets/images/badges/sports/eight-ball.png"),
-              BadgeButton("assets/images/badges/sports/fishing.png"),
-              BadgeButton("assets/images/badges/sports/golf-1.png"),
-              BadgeButton("assets/images/badges/sports/hockey.png"),
-              BadgeButton("assets/images/badges/sports/karate.png"),
-              BadgeButton("assets/images/badges/sports/kayak.png"),
-              BadgeButton("assets/images/badges/sports/lacrosse.png"),
-              BadgeButton("assets/images/badges/sports/ping-pong-1.png"),
-              BadgeButton("assets/images/badges/sports/rugby.png"),
-              BadgeButton("assets/images/badges/sports/surf-1.png"),
-              BadgeButton("assets/images/badges/sports/tennis-ball.png"),
-              BadgeButton("assets/images/badges/sports/waterpolo.png"),
-              BadgeButton("assets/images/badges/sports/weight-3.png"),
-              BadgeButton("assets/images/badges/sports/yachting.png"),
+              BadgeButton("assets/images/badges/religion/angel.png"),
+              BadgeButton("assets/images/badges/religion/bahai.png"),
+              BadgeButton("assets/images/badges/religion/bible.png"),
+              BadgeButton("assets/images/badges/religion/buddhism.png"),
+              BadgeButton("assets/images/badges/religion/christianity.png"),
+              BadgeButton("assets/images/badges/religion/ganesha.png"),
+              BadgeButton("assets/images/badges/religion/hinduism.png"),
+              BadgeButton("assets/images/badges/religion/islam.png"),
+              BadgeButton("assets/images/badges/religion/jainism.png"),
+              BadgeButton("assets/images/badges/religion/judaism.png"),
+              BadgeButton("assets/images/badges/religion/paganism.png"),
+              BadgeButton("assets/images/badges/religion/rosary.png"),
+              BadgeButton("assets/images/badges/religion/shinto.png"),
+              BadgeButton("assets/images/badges/religion/taoism.png"),
               ],
             ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Lifestyle",
+                  style: TextStyle(
+                    fontSize: 15
+                  ),
+                ),
+              ),
+            ),
+          //Lifestyle badges
+          GridView.count(
+            crossAxisCount: 4,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              //Lifestyle icons
+              //TODO: replace with hobbies badges
+              BadgeButton("assets/images/badges/religion/angel.png"),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Weather Preferences",
+                  style: TextStyle(
+                    fontSize: 15
+                  ),
+                ),
+              ),
+            ),
+          //Weather badges
+          GridView.count(
+            crossAxisCount: 4,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              //Weather icons
+              BadgeButton("assets/images/badges/weather/bolt.png"),
+              BadgeButton("assets/images/badges/weather/clouds.png"),
+              BadgeButton("assets/images/badges/weather/snowflake.png"),
+              BadgeButton("assets/images/badges/weather/sunny.png"),
+              BadgeButton("assets/images/badges/weather/temperature-1.png"),
+              BadgeButton("assets/images/badges/weather/temperature-2.png"),
+              BadgeButton("assets/images/badges/weather/temperature.png"),
+              BadgeButton("assets/images/badges/weather/umbrella-1.png"),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(40),
+            )
           ],
         ),
     );
