@@ -32,22 +32,26 @@ class _BadgeButtonState extends State<BadgeButton> {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: () => setState(() {
-        print(BadgeSelectionInformation.badges.length);
-        //If this badge isn't yet selected and the max number of badges hasn't been reached, then this badge will be selected
-        if (BadgeSelectionInformation.badges.length < BadgeSelectionInformation.MAX_NUMBER_BADGES && !_isSelected) {
-          _toggleSelection();
-          BadgeSelectionInformation.badges.add(widget._iconFilePath);
-        }
-        //If the badge is selected, then toggle the selection and remove it from the list of selected badges 
-        else if (_isSelected) {
-          _toggleSelection();
-          BadgeSelectionInformation.badges.remove(widget._iconFilePath);
-        }
-      }),
-      color: _isSelected ? Colors.deepPurpleAccent : Colors.transparent,
-      child: Image.asset(widget._iconFilePath)
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: FlatButton(
+        shape: StadiumBorder(),
+        onPressed: () => setState(() {
+          print(BadgeSelectionInformation.badges.length);
+          //If this badge isn't yet selected and the max number of badges hasn't been reached, then this badge will be selected
+          if (BadgeSelectionInformation.badges.length < BadgeSelectionInformation.MAX_NUMBER_BADGES && !_isSelected) {
+            _toggleSelection();
+            BadgeSelectionInformation.badges.add(widget._iconFilePath);
+          }
+          //If the badge is selected, then toggle the selection and remove it from the list of selected badges
+          else if (_isSelected) {
+            _toggleSelection();
+            BadgeSelectionInformation.badges.remove(widget._iconFilePath);
+          }
+        }),
+        color: _isSelected ? Colors.deepPurpleAccent : Colors.transparent,
+        child: Image.asset(widget._iconFilePath)
+      ),
     );
   }
 }
@@ -72,21 +76,22 @@ class AddBadgesScreen extends StatelessWidget {
             iconSize: 40.0,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => LocationEntryScreen())
           );
         },
-        child: Icon(Icons.arrow_forward),
+          icon: Icon(Icons.arrow_forward),
+        label: Text("Choose"),
         backgroundColor: Colors.deepPurpleAccent
       ),
       //Main list view for organizing widgets
       body: ListView(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Text(
               "Add Badges",
                 style: TextStyle(
@@ -96,7 +101,7 @@ class AddBadgesScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -139,7 +144,7 @@ class AddBadgesScreen extends StatelessWidget {
               ],
             ), 
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(20),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -174,7 +179,7 @@ class AddBadgesScreen extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(20),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(

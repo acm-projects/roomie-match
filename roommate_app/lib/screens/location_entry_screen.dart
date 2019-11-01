@@ -50,7 +50,7 @@ class LocationEntryScreen extends StatelessWidget {
                 hintMaxLines: 2,
                 prefixIcon: Icon(
                   Icons.location_on,
-                  size: 40
+                  size: 30
                   ),
                 hintText: "Enter city, state",
               ),

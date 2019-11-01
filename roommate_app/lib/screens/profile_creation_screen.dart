@@ -38,133 +38,138 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
           ),
         ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           //Profile image selection button
-          FlatButton(
-            onPressed: () {},
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 0, 100),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
+            child: FlatButton(
+              onPressed: () {},
               child: Icon(
-              Icons.add_a_photo,
+              Icons.person_add,
               color: Colors.black54,
-              size: 100,
+              size: 60,
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            child: Container(
-              child: Text("Profile",
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                  ),),
-              alignment: Alignment.centerLeft,
-            ),
-          ),
-          SizedBox(
-            height: 25.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            //First name text field
-            child: TextField(
-              controller: firstNameTextController,
-              decoration: InputDecoration(
-                hintText: "First Name",
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 25.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            //Lastname text field
-            child: TextField(
-              controller: lastNameTextController,
-              decoration: InputDecoration(
-                hintText: "Last Name",
-              ),
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Flexible(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(40, 25, 180, 25),
-                  //Age numeric text field
-                  child: TextField(
-                  controller: ageTextController,
-                  maxLength: 2,
-                  keyboardType: TextInputType.datetime,
-                  decoration: InputDecoration(
-                    hintText: "Age",
-                    counterText: ""
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+                child: Container(
+                  child: Text("Profile",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    ),),
+                  alignment: Alignment.centerLeft,
                 ),
-                ),
+              ),
+              SizedBox(
+                height: 5.0,
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 14.77, 40, 0),
-                  //Gender selection dropdown button
-                  child: DropdownButton<String>(
-                  value: widget._selectedGender,
-                  icon: Icon(Icons.arrow_downward),
-                  iconSize: 30,
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 17,
-                    fontFamily: "Poppins"
-                  ),
-                  underline: Container(
-                    height: 1.1,
-                    color: Colors.grey
-                  ),
-                  onChanged: (String newSelection) => setState(() => widget._selectedGender = newSelection),
-                  items: <String>["Male", "Female", "Other"]
-                  .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value)
-                    );
-                  }).toList(),
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                //First name text field
+                child: TextField(
+                  controller: firstNameTextController,
+                  decoration: InputDecoration(
+                    hintText: "First Name",
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 25.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                //Lastname text field
+                child: TextField(
+                  controller: lastNameTextController,
+                  decoration: InputDecoration(
+                    hintText: "Last Name",
+                  ),
+                ),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(40, 25, 180, 25),
+                      //Age numeric text field
+                      child: TextField(
+                        controller: ageTextController,
+                        maxLength: 2,
+                        keyboardType: TextInputType.datetime,
+                        decoration: InputDecoration(
+                            hintText: "Age",
+                            counterText: ""
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 14.77, 40, 0),
+                    //Gender selection dropdown button
+                    child: DropdownButton<String>(
+                      value: widget._selectedGender,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 30,
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 17,
+                          fontFamily: "Poppins"
+                      ),
+                      underline: Container(
+                          height: 1.1,
+                          color: Colors.grey
+                      ),
+                      onChanged: (String newSelection) => setState(() => widget._selectedGender = newSelection),
+                      items: <String>["Male", "Female", "Other"]
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value)
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 50.0,
+              ),
+              Container(
+                width: 280.0,
+                height: 60.0,
+                //Next button
+                child: FlatButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutMeScreen())
+                    );
+                    //TODO: write user data to user_info.dart
+                    //TODO: validate input -- make sure nothing is blank
+                  },
+                  child: Text("Next", style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                  ),
+                  color: Colors.deepPurpleAccent,
+                  splashColor: null,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0),
+                  ),
+                ),
+              ),
             ],
           ),
-          SizedBox(
-            height: 50.0,
+            ],
           ),
-          Container(
-            width: 280.0,
-            height: 60.0,
-            //Next button
-            child: FlatButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => AboutMeScreen())
-                );
-                //TODO: write user data to user_info.dart
-                //TODO: validate input -- make sure nothing is blank
-              },
-              child: Text("Next", style: TextStyle(
-                color: Colors.white,
-                fontSize: 18.0,
-              ),
-              ),
-              color: Colors.deepPurpleAccent,
-              splashColor: null,
-              shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(30.0),
-              ),
-            ),
-          ),
-        ],
-      ),
+
     );
   }
 }
