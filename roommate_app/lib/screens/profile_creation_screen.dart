@@ -1,5 +1,6 @@
 //This screen is the start of the user profile creation process
 import 'package:flutter/material.dart';
+import 'package:roommate_app/field_enforcer.dart';
 import 'package:roommate_app/screens/aboutme.dart';
 import 'package:roommate_app/screens/location_entry_screen.dart';
 import 'signup.dart';
@@ -81,7 +82,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
-            //Lastname text field
+            //Last name text field
             child: TextField(
               controller: lastNameTextController,
               decoration: InputDecoration(
@@ -144,12 +145,16 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
             //Next button
             child: FlatButton(
               onPressed: () {
+                //Validate that the first name, last name, and age fields are not empty (gender cannot be empty because it has a default value)
+                if (!FieldEnforcer.enforceFullFields(context, [firstNameTextController, lastNameTextController, ageTextController])) {
+                  return;
+                }
+                
+                //Route to about me page
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AboutMeScreen())
                 );
-                //TODO: write user data to user_info.dart
-                //TODO: validate input -- make sure nothing is blank
               },
               child: Text("Next", style: TextStyle(
                 color: Colors.white,

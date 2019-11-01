@@ -1,38 +1,14 @@
 //This screen lets users log in to their existing account
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:roommate_app/field_enforcer.dart';
 import 'signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatelessWidget {
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
-
-  void _showLoginAlertDialog(BuildContext context, String message) {
-    Widget okButton = FlatButton(
-      child: Text(
-        "Ok",
-        style: TextStyle(
-          color: Colors.deepPurpleAccent
-        )
-      ),
-      onPressed: () {
-        Navigator.pop(context);
-      }
-    );
-
-    AlertDialog loginAlertDialog = AlertDialog(
-      title: Text("Error"),
-      content: Text(message),
-      actions: [okButton]
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return loginAlertDialog;
-      }
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +19,8 @@ class LoginScreen extends StatelessWidget {
           leading: IconButton(
             //X button
             onPressed: (){
-              Navigator.pop(context);
+              //Exit the app when the x button is pressed
+              exit(0);
             },
             icon: Icon(Icons.close),
             iconSize: 35,
@@ -116,14 +93,13 @@ class LoginScreen extends StatelessWidget {
             //Log in button
             child: FlatButton(
               onPressed: () async {
-                String email = emailTextController.text;
-                String password = passwordTextController.text;
-
-                //Check to make sure neither the email or password fields are blank
-                if (email.length == 0 || password.length == 0) {
-                  _showLoginAlertDialog(context, "Neither the email or password fields can be left blank");
+                //Validate the none of the fields have been left blank
+                if (!FieldEnforcer.enforceFullFields(context, [emailTextController, passwordTextController])) {
                   return;
                 }
+
+                String email = emailTextController.text;
+                String password = passwordTextController.text;
 
                 //Trim whitespace off of email string
                 email = email.trim();
@@ -136,13 +112,12 @@ class LoginScreen extends StatelessWidget {
                 ).then((authResult) {
                   //Process the gotten user auth info
                   FirebaseUser user = authResult.user;
-                  print("UID: ${user.uid}");
 
-                  //Gather the user's info from firestore
+                  //TODO: Gather the user's info from firestore
 
                   //Navigate to the home screen
                 }).catchError((_) {
-                  _showLoginAlertDialog(context, "Invalid email or password");
+                  FieldEnforcer.showErrorDialog(context, "Invalid email or password");
                 });
                 
               },

@@ -1,39 +1,15 @@
 //This screen lets user create a new account if they do not already have one
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:roommate_app/field_enforcer.dart';
+import 'package:roommate_app/screens/profile_creation_screen.dart';
 import "dart:developer";
 import 'package:roommate_app/user_info.dart';
 
 class SignupScreen extends StatelessWidget {
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
-
-  void _showLoginAlertDialog(BuildContext context, String message) {
-    Widget okButton = FlatButton(
-      child: Text(
-        "Ok",
-        style: TextStyle(
-          color: Colors.deepPurpleAccent
-        )
-      ),
-      onPressed: () {
-        Navigator.pop(context);
-      }
-    );
-
-    AlertDialog loginAlertDialog = AlertDialog(
-      title: Text("Error"),
-      content: Text(message),
-      actions: [okButton]
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return loginAlertDialog;
-      }
-    );
-  } //end method _showLoginAlertDialog
+  TextEditingController reEnterPasswordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -94,16 +70,19 @@ class SignupScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10.0,
+              height: 25.0,
             ),
-            FlatButton(
-              onPressed: (){},
-              splashColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              child: Text("",
-                  style: TextStyle(
-                    color: Colors.deepPurpleAccent,
-                  )),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              //Confirm password text field
+              child: TextField(
+                controller: reEnterPasswordTextController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Re-enter Password",
+                  prefixIcon: Icon(Icons.vpn_key),
+                ),
+              ),
             ),
             SizedBox(
               height: 40.0,
@@ -114,15 +93,19 @@ class SignupScreen extends StatelessWidget {
               //Sign up button
               child: FlatButton(
                 onPressed: () async {
+                  //Validate that all fields are full
+                  if (!FieldEnforcer.enforceFullFields(context, [emailTextController, passwordTextController, reEnterPasswordTextController])) {
+                    return;
+                  }
+
                   String email = emailTextController.text;
                   String password = passwordTextController.text;
+                  String reEnteredPassword = passwordTextController.text;
 
-                  //Check to make sure neither the email or password fields are blank
-                  if (email.isEmpty || password.isEmpty) {
-                    log("EMPTY");
-                    _showLoginAlertDialog(context, "Neither the email or password fields can be left blank");
+                  if (password != reEnteredPassword) {
+                    FieldEnforcer.showErrorDialog(context, "Passwords do not match!");
                     return;
-                  } 
+                  }
 
                   //Trim whitespace off of email string
                   email = email.trim();
@@ -136,12 +119,16 @@ class SignupScreen extends StatelessWidget {
                     //Process the created user auth info
                     FirebaseUser user = authResult.user;
 
-                    //Write the user's UID to the user info abastract class
+                    //Write the user's UID to the user info class
                     UserInformation.uid = user.uid;
 
-                    //TODO: go to the profile screen
+                    //Route to profile creation screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => ProfileCreationScreen())
+                    );
                   }).catchError((_) {
-                    _showLoginAlertDialog(context, "That email is already in use. Please try another one");
+                    FieldEnforcer.showErrorDialog(context, "That email is already in use. Please try another one");
                   });
                 },
                 child: Text("Sign up", style: TextStyle(

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:roommate_app/field_enforcer.dart';
 import 'package:roommate_app/screens/preferences.dart';
 import 'package:roommate_app/screens/profile_creation_screen.dart';
 import 'login.dart';
 import 'addbadges.dart';
 
 class LocationEntryScreen extends StatelessWidget {
+  TextEditingController locationTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +47,7 @@ class LocationEntryScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
             //Location entry text field
             child: TextField(
+              controller: locationTextController,
               maxLines: 1,
               obscureText: false,
               decoration: InputDecoration(
@@ -66,10 +70,16 @@ class LocationEntryScreen extends StatelessWidget {
               width: 280.0,
               height: 60.0,
               child: FlatButton(
-                onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PreferencesScreen())
+                onPressed: () {
+                  //Validate that the location text field is filled
+                  if (!FieldEnforcer.enforceFullFields(context, [locationTextController])) {
+                    return;
+                  }
+
+                  //Route to preferences screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PreferencesScreen())
                   );
                 },
                 child: Text("Next", style: TextStyle(

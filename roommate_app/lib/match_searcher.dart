@@ -28,6 +28,8 @@ class MatchSearcher {
 
     double distance;                          //The calculated distance between the searching user and a possible match
 
+    Query genderQuery;                        //A query that will be used to query the correct gender based on the user's preference
+    
     //Query the database for matches who live in the same state and match the searching user's perferred gender
     userDataCollection
       .where("state", isEqualTo: this.state)
