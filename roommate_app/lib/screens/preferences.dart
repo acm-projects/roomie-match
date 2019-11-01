@@ -1,5 +1,8 @@
 //This screen will let the user pick basic info like age range, distance, and gender preference
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:roommate_app/constants.dart';
+import 'package:roommate_app/field_enforcer.dart';
 import 'package:roommate_app/screens/location_entry_screen.dart';
 import 'package:roommate_app/user_info.dart';
 import 'addbadges.dart';
@@ -25,7 +28,6 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
     final bool inStartTouchTarget = (tapValue - values.start).abs() * trackSize.width < touchRadius;
 
     final bool inEndTouchTarget = (tapValue - values.end).abs() * trackSize.width < touchRadius;
-
 
     if (inStartTouchTarget && inEndTouchTarget) {
       bool towardsStart;
@@ -286,11 +288,32 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
               height: 60.0,
               //Finished button
               child: FlatButton(
-                onPressed: () {
-                  //UserInformation.preferredGender = 
+                onPressed: () async {
+                  final userDataCollection = Firestore.instance.collection(kUSER_INFO_COLLECTION_NAME);
+
+                  await userDataCollection
+                    .document(UserInformation.uid)
+                    .setData({
+                      kUID_DOCUMENT_NAME : UserInformation.uid,
+                      kMATCHES_DOCUMENT_NAME : UserInformation.matches,
+                      kBADGES_DOCUMENT_NAME : UserInformation.badges,
+                      kFIRST_NAME_DOCUMENT_NAME : UserInformation.firstName,
+                      kLAST_NAME_DOCUMENT_NAME : UserInformation.lastName,
+                      kGENDER_DOCUMENT_NAME : UserInformation.gender,
+                      kAGE_DOCUMENT_NAME : UserInformation.age,
+                      kABOUT_ME_DOCUMENT_NAME : UserInformation.aboutMe,
+                      kPREFERRED_GENDER_DOCUMENT_NAME : UserInformation.preferredGender,
+                      kPREFERRED_AGE_LOWER_DOCUMENT_NAME : UserInformation.preferredAgeLower,
+                      kPREFERRED_AGE_UPPER_DOCUMENT_NAME : UserInformation.preferredAgeUpper,
+                      kCITY_DOCUMENT_NAME : UserInformation.city,
+                      kSTATE_DOCUMENT_NAME : UserInformation.state,
+                      kRADIUS_DOCUMENT_NAME : UserInformation.radius
+                    }).catchError((_) {
+                      FieldEnforcer.showErrorDialog(context, "Error creating you profile");
+                    });
 
                 },
-                child: Text("Next", style: TextStyle(
+                child: Text("Finish Profile", style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.0,
                 ),

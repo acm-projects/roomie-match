@@ -72,6 +72,7 @@ class AboutMeScreen extends StatelessWidget {
                     return;
                   }
 
+                  //
                   UserInformation.aboutMe = aboutMeTextController.text;
 
                   //Route to add badges screen

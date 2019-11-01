@@ -17,11 +17,14 @@ class Test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FlatButton(
-        child: Text("Test"),
-        onPressed: () {
-          _testGeoCoder("richardson texas");
-        }
+      body: Padding(
+        padding: EdgeInsets.all(60),
+        child: FlatButton(
+          child: Text("Test"),
+            onPressed: () {
+              _testGeoCoder("askldjffkas;lkdjf");
+          }
+        )
       )
     );
 

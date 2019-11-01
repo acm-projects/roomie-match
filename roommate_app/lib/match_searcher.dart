@@ -74,7 +74,7 @@ class MatchSearcher {
               matches.add(Profile(matchBadges, matchFirstName, matchLastName, matchGender, matchAge, matchAboutMe, matchPreferredGender, matchCity, matchState));
           }
         }
-      }).then((dummyVar) {
+      }).then((_) {
         for (Profile match in matches) {
           print(match.firstName);
         }
