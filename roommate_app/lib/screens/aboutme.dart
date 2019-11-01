@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roommate_app/field_enforcer.dart';
 import 'package:roommate_app/screens/profile_creation_screen.dart';
+import 'package:roommate_app/user_info.dart';
 import 'login.dart';
 import 'addbadges.dart';
 
@@ -69,6 +71,8 @@ class AboutMeScreen extends StatelessWidget {
                   if (!FieldEnforcer.enforceFullFields(context, [aboutMeTextController])) {
                     return;
                   }
+
+                  UserInformation.aboutMe = aboutMeTextController.text;
 
                   //Route to add badges screen
                   Navigator.push(

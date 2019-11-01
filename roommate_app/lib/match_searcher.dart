@@ -30,6 +30,8 @@ class MatchSearcher {
 
     Query genderQuery;                        //A query that will be used to query the correct gender based on the user's preference
     
+    //TODO: query all users whose preferred genders match the searching users gender
+
     //Query the database for matches who live in the same state and match the searching user's perferred gender
     userDataCollection
       .where("state", isEqualTo: this.state)
@@ -67,7 +69,6 @@ class MatchSearcher {
               String matchPreferredGender = documentSnapshot.data["perferred-gender"];
               String matchCity = documentSnapshot.data["city"];
               String matchState = documentSnapshot.data["state"];
-
 
               //...and add a new profile object containing that data to the matches list
               matches.add(Profile(matchBadges, matchFirstName, matchLastName, matchGender, matchAge, matchAboutMe, matchPreferredGender, matchCity, matchState));

@@ -1,13 +1,13 @@
 //This screen is the start of the user profile creation process
 import 'package:flutter/material.dart';
+import 'package:roommate_app/constants.dart';
 import 'package:roommate_app/field_enforcer.dart';
 import 'package:roommate_app/screens/aboutme.dart';
-import 'package:roommate_app/screens/location_entry_screen.dart';
+import '../user_info.dart';
 import 'signup.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileCreationScreen extends StatefulWidget {
-  String _selectedGender = "Male";  //Holds the current gender selection; initialzed to the default gender
+  String _selectedGender = kGENDER_MALE;  //Holds the current gender selection; initialzed to the default gender
 
   @override
   _ProfileCreationScreenState createState() => _ProfileCreationScreenState();
@@ -18,7 +18,6 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
   TextEditingController lastNameTextController = TextEditingController();
   TextEditingController ageTextController = TextEditingController();
 
-  String selectedGender = "Male"; //Will hold the selected gender; initialzed to the default selection
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +124,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
                     color: Colors.grey
                   ),
                   onChanged: (String newSelection) => setState(() => widget._selectedGender = newSelection),
-                  items: <String>["Male", "Female", "Other"]
+                  items: <String>[kGENDER_MALE, kGENDER_FEMALE, kGENDER_OTHER]
                   .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -150,6 +149,12 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
                   return;
                 }
                 
+                //Store the user's info in the UserInformation abstract class
+                UserInformation.firstName = firstNameTextController.text;
+                UserInformation.lastName = lastNameTextController.text;
+                UserInformation.gender = widget._selectedGender;
+                UserInformation.age = int.parse(ageTextController.text);
+
                 //Route to about me page
                 Navigator.push(
                   context,

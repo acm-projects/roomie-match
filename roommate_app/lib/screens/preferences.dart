@@ -1,6 +1,7 @@
 //This screen will let the user pick basic info like age range, distance, and gender preference
 import 'package:flutter/material.dart';
 import 'package:roommate_app/screens/location_entry_screen.dart';
+import 'package:roommate_app/user_info.dart';
 import 'addbadges.dart';
 import 'dart:math' as math;
 
@@ -286,6 +287,8 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
               //Finished button
               child: FlatButton(
                 onPressed: () {
+                  //UserInformation.preferredGender = 
+
                 },
                 child: Text("Next", style: TextStyle(
                   color: Colors.white,
