@@ -2,11 +2,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:roommate_app/field_enforcer.dart';
+import 'package:roommate_app/screens/login.dart';
 import 'package:roommate_app/screens/profile_creation_screen.dart';
-import "dart:developer";
 import 'package:roommate_app/user_info.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
+  @override
+  _SignupScreenState createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailTextController = TextEditingController();
   TextEditingController passwordTextController = TextEditingController();
   TextEditingController reEnterPasswordTextController = TextEditingController();
@@ -128,7 +133,7 @@ class SignupScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => ProfileCreationScreen())
                     );
                   }).catchError((_) {
-                    FieldEnforcer.showErrorDialog(context, "That email is already in use. Please try another one");
+                    FieldEnforcer.showErrorDialog(context, "That email is already in use or is invalid. Please try another one");
                   });
                 },
                 child: Text("Sign up", style: TextStyle(
@@ -155,7 +160,10 @@ class SignupScreen extends StatelessWidget {
                   child: IconButton(
                     padding: EdgeInsets.all(0.0),
                     onPressed: (){
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen())
+                      );
                     },
                     icon: Text("Log in",
                       style: TextStyle(

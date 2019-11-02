@@ -88,7 +88,7 @@ class AddBadgesScreen extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(15),
             child: Text(
-              "Add Badges",
+              "Add badges",
                 style: TextStyle(
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
@@ -100,7 +100,7 @@ class AddBadgesScreen extends StatelessWidget {
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "Sports/Activities",
+                "Sports/activities",
                 style: TextStyle(
                     fontSize: 15
                   )
@@ -201,7 +201,7 @@ class AddBadgesScreen extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Weather Preferences",
+                  "Weather preferences",
                   style: TextStyle(
                     fontSize: 15
                   ),

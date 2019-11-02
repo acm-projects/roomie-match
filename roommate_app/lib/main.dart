@@ -23,7 +23,7 @@ class RoommateApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
       ),
       home:
-          LoginScreen() //The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
+          LoginScreen()//The main landing page will be the log in page; if already logged in, the user will be directed to the dashboard
     );
   }
 }

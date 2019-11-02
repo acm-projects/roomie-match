@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:roommate_app/field_enforcer.dart';
 import 'package:roommate_app/screens/preferences.dart';
-import 'package:roommate_app/screens/profile_creation_screen.dart';
-import 'login.dart';
 import 'addbadges.dart';
 
-class LocationEntryScreen extends StatelessWidget {
+class LocationEntryScreen extends StatefulWidget {
+  @override
+  _LocationEntryScreenState createState() => _LocationEntryScreenState();
+}
+
+class _LocationEntryScreenState extends State<LocationEntryScreen> {
   TextEditingController locationTextController = TextEditingController();
 
   @override

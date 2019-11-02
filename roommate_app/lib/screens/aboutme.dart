@@ -6,7 +6,12 @@ import 'package:roommate_app/user_info.dart';
 import 'login.dart';
 import 'addbadges.dart';
 
-class AboutMeScreen extends StatelessWidget {
+class AboutMeScreen extends StatefulWidget {
+  @override
+  _AboutMeScreenState createState() => _AboutMeScreenState();
+}
+
+class _AboutMeScreenState extends State<AboutMeScreen> {
   TextEditingController aboutMeTextController = TextEditingController();
 
   @override
@@ -72,7 +77,6 @@ class AboutMeScreen extends StatelessWidget {
                     return;
                   }
 
-                  //
                   UserInformation.aboutMe = aboutMeTextController.text;
 
                   //Route to add badges screen

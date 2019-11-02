@@ -82,7 +82,8 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
           iconSize: 40.0,
         ),
       ),
-      body: Column(
+      body: SingleChildScrollView (
+        child: Column(
           children: <Widget>[
             Column(
               children: <Widget>[
@@ -327,6 +328,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
             ),
         ],
       ),
+      )
     );
   }
 }
