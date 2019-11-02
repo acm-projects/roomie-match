@@ -1,19 +1,14 @@
 //This class is used to search for matches given a user's gender and location preferences
 import 'dart:async';
+import 'package:roommate_app/field_enforcer.dart';
 import 'package:roommate_app/profile.dart';
+import 'package:roommate_app/user_info.dart';
 import "dart:math";
 import "constants.dart";
 import "package:geolocator/geolocator.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 
 class MatchSearcher {
-  String placeName;       //The name of the location that the searching user lives in; used for geocoding the user's coordinates
-  String state;           //The state that the searching user is searching in
-  int radius;             //The radius (in miles) that a user wants to search for matches in
-  String preferredGender; //The preferred gender of the searching user
-
-  MatchSearcher(this.placeName, this.state, this.radius, this.preferredGender);
-
   //Creating a reference to the user info Firestore collection
   CollectionReference userDataCollection = Firestore.instance.collection(kUSER_INFO_COLLECTION_NAME);
 
@@ -22,7 +17,11 @@ class MatchSearcher {
     Position searchingUserCoordinates;        //The coordinates of the searching user
     Position possibleMatchCoordinates;        //The coordinates of a potential match
 
+    String possibleMatchPreferredGender;      //The gender of a possible match
     int possibleMatchRadius;                  //The search radius of a possible match
+    String possibleMatchPlaceName;            //The place name of a possible match
+    int possibleMatchPreferredAgeUpper;       //The upper bound of a possible match's age preferences
+    int possibleMatchPreferredAgeLower;       //The lower bound of a possible match's age preferences
 
     List<Profile> matches = List();           //A list containing profile objects of every match found
 
@@ -30,45 +29,64 @@ class MatchSearcher {
 
     Query genderQuery;                        //A query that will be used to query the correct gender based on the user's preference
     
-    //TODO: query all users whose preferred genders match the searching users gender
+    String placeName;                         //A string used to poll the geocoder API
 
-    
-    //Query the database for matches who live in the same state and match the searching user's perferred gender
-    userDataCollection
-      .where("state", isEqualTo: this.state)
-      .where("gender", isEqualTo: this.preferredGender)
-      .getDocuments() //At this point, all documents are users that are in this.state and are of this.preferredGender
+    placeName = UserInformation.city + UserInformation.state;
+
+    //Wait for the coordinates of the searching user
+    searchingUserCoordinates = await _getCoordinatesFromPlaceName(placeName);
+
+    //Determine which gender to query for based on user preferences
+    if (UserInformation.preferredGender != kGENDER_EITHER) {
+      //If the searching user didn't ask to look for either gender, look for their selected preferred gender
+      genderQuery = userDataCollection.where(kGENDER_DOCUMENT_NAME, isEqualTo: UserInformation.preferredGender);
+    } else {
+      //If the searching user picked either gender, then simply set gender query to the data collection reference;
+      //this will act as not performing any query at all
+      genderQuery = userDataCollection;
+    }
+
+    //Query the database for matches who live in the same state and within the right age range
+    genderQuery
+      .where("state", isEqualTo: UserInformation.state)
+      .where("age", isGreaterThanOrEqualTo: UserInformation.preferredAgeLower)
+      .where("age", isLessThanOrEqualTo: UserInformation.preferredAgeUpper)
+      .getDocuments() //At this point, all documents are users that are in this.state and are of this.preferredGender and in the correct age range
       .then((QuerySnapshot querySnapshot) async {
         //Iterate through possible matches returned by query and determine if they are the appropriate distance
         for (DocumentSnapshot documentSnapshot in querySnapshot.documents) {
           //Creating a string to pass into the _getCoordinatesFromPlacename method to get the potential matche's coordinates
-          String possibleMatchPlaceName = documentSnapshot.data["state"] + " " + documentSnapshot.data["city"];        
+          possibleMatchPlaceName = documentSnapshot.data[kCITY_DOCUMENT_NAME] + " " + documentSnapshot.data[kSTATE_DOCUMENT_NAME];        
 
           //Wait for the coordinates of the possible match
-          possibleMatchCoordinates = await _getCoordinatesFromPlaceName(possibleMatchPlaceName);
-
-          //Wait for the coordinates of the searching user
-          searchingUserCoordinates = await _getCoordinatesFromPlaceName(this.placeName);
+          possibleMatchCoordinates = await _getCoordinatesFromPlaceName(possibleMatchPlaceName);  
 
           //Wait for the distance to be calculated
           distance = await _calculateDistance(searchingUserCoordinates, possibleMatchCoordinates);
 
           //Get the radius of the possible match
-          possibleMatchRadius = documentSnapshot.data["radius"];
-          print("POSSIBLE MATCH RADIUS: $possibleMatchRadius");
+          possibleMatchRadius = documentSnapshot.data[kRADIUS_DOCUMENT_NAME];
 
-          //If the possible match is within the searching user's radius and the possible match radius does not exceed the searching user radius...
-          if (distance <= this.radius && distance <= possibleMatchRadius) {
-              print("FOUNDMATCH");
+          //Get the possible match's preferred gender
+          possibleMatchPreferredGender = documentSnapshot.data[kPREFERRED_GENDER_DOCUMENT_NAME];
+
+          //Get the age bound of the possible match
+          possibleMatchPreferredAgeLower = documentSnapshot.data[kPREFERRED_AGE_LOWER_DOCUMENT_NAME];
+          possibleMatchPreferredAgeUpper = documentSnapshot.data[kPREFERRED_AGE_UPPER_DOCUMENT_NAME];
+
+          //If the possible match is within the searching user's radius and the possible match radius does not exceed the searching user radius and the gender is the same as the possible matche's preferred gender and the age is in the correct range...
+          if (distance <= UserInformation.radius && distance <= possibleMatchRadius 
+          && (UserInformation.gender == possibleMatchPreferredGender || possibleMatchPreferredGender == kGENDER_EITHER)
+          && (UserInformation.age <= possibleMatchPreferredAgeUpper && UserInformation.age >= possibleMatchPreferredAgeLower)) {
               //...gather the match's info from Firestore...
               String matchUid = documentSnapshot.documentID;
-              List<String> matchBadges = documentSnapshot.data["badges"];
-              String matchFirstName = documentSnapshot.data["first-name"];
-              String matchLastName = documentSnapshot.data["last-name"];
-              String matchGender = documentSnapshot.data["gender"];
-              int matchAge = documentSnapshot.data["age"];
-              String matchAboutMe = documentSnapshot.data["about-me"];
-              String matchPreferredGender = documentSnapshot.data["perferred-gender"];
+              List<dynamic> matchBadges = documentSnapshot.data[kBADGES_DOCUMENT_NAME];
+              String matchFirstName = documentSnapshot.data[kFIRST_NAME_DOCUMENT_NAME];
+              String matchLastName = documentSnapshot.data[kLAST_NAME_DOCUMENT_NAME];
+              String matchGender = documentSnapshot.data[kGENDER_DOCUMENT_NAME];
+              int matchAge = documentSnapshot.data[kAGE_DOCUMENT_NAME];
+              String matchAboutMe = documentSnapshot.data[kABOUT_ME_DOCUMENT_NAME];
+              String matchPreferredGender = documentSnapshot.data[kPREFERRED_GENDER_DOCUMENT_NAME];
 
               //...and add a new profile object containing that data to the matches list
               matches.add(Profile(matchUid, matchBadges, matchFirstName, matchLastName, matchGender, matchAge, matchAboutMe, matchPreferredGender, distance));

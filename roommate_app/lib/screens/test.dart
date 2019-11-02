@@ -1,5 +1,11 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:roommate_app/match_searcher.dart';
+import "package:roommate_app/profile.dart";
+import "package:roommate_app/user_info.dart";
 
 //The purpose of this file is to have a central location for all the tests that need to be done
 class Test extends StatelessWidget {
@@ -14,6 +20,16 @@ class Test extends StatelessWidget {
   
   }
 
+  Future<void> _testMatchAlgorithm() async {
+    MatchSearcher ms = MatchSearcher();
+    await ms.findMatches().then((matches) {
+      log(matches.toString());
+      for (Profile match in matches) {
+        print(match.firstName);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +38,9 @@ class Test extends StatelessWidget {
         child: FlatButton(
           child: Text("Test"),
             onPressed: () {
-              _testGeoCoder("askldjffkas;lkdjf");
+              print("PRESS");
+              print(UserInformation.city);
+              _testMatchAlgorithm();
           }
         )
       )

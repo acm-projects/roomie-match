@@ -8,6 +8,7 @@ const double kAPP_BAR_TEXT_SIZE = 30.0;
 const String kGENDER_MALE = "Male";
 const String kGENDER_FEMALE = "Female";
 const String kGENDER_OTHER = "Other";
+const String kGENDER_EITHER = "Either";
 
 const kUID_DOCUMENT_NAME = "uid";
 const kMATCHES_DOCUMENT_NAME = "matches";

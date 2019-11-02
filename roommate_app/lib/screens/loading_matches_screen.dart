@@ -9,11 +9,11 @@ class LoadingMatchesScreen extends StatelessWidget {
     String placeName = UserInformation.city + " " + UserInformation.state;
 
     //Create an instance of MatchSearcher, find matches, and store them as a list of profiles
-    MatchSearcher matchSearcher = MatchSearcher(placeName,  UserInformation.state, UserInformation.radius, UserInformation.preferredGender);
-    matchSearcher.findMatches().then((matches) {
+    ///MatchSearcher matchSearcher = MatchSearcher(placeName,  UserInformation.state, UserInformation.radius, UserInformation.preferredGender);
+    ///matchSearcher.findMatches().then((matches) {
       //TODO: nagivate to matches screen
-      print("MATCHES: " + matches.toString());
-    });
+      ///print("MATCHES: " + matches.toString());
+    ///});
   }
 
   @override

@@ -7,7 +7,7 @@ to be dislayed to other users when there is a match or potential match.
 
 class Profile {
   String uid;             //The UID of the user as created by Firebase
-  List<String> badges;    //The badges that the user has selected; stored as the names of the icons internally
+  List<dynamic> badges;    //The badges that the user has selected; stored as the names of the icons internally
   String firstName;       //The user's first name
   String lastName;        //The user's last name
   String gender;          //The user's gender
