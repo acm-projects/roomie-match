@@ -32,6 +32,7 @@ class MatchSearcher {
     
     //TODO: query all users whose preferred genders match the searching users gender
 
+    
     //Query the database for matches who live in the same state and match the searching user's perferred gender
     userDataCollection
       .where("state", isEqualTo: this.state)
@@ -60,6 +61,7 @@ class MatchSearcher {
           if (distance <= this.radius && distance <= possibleMatchRadius) {
               print("FOUNDMATCH");
               //...gather the match's info from Firestore...
+              String matchUid = documentSnapshot.documentID;
               List<String> matchBadges = documentSnapshot.data["badges"];
               String matchFirstName = documentSnapshot.data["first-name"];
               String matchLastName = documentSnapshot.data["last-name"];
@@ -67,11 +69,9 @@ class MatchSearcher {
               int matchAge = documentSnapshot.data["age"];
               String matchAboutMe = documentSnapshot.data["about-me"];
               String matchPreferredGender = documentSnapshot.data["perferred-gender"];
-              String matchCity = documentSnapshot.data["city"];
-              String matchState = documentSnapshot.data["state"];
 
               //...and add a new profile object containing that data to the matches list
-              matches.add(Profile(matchBadges, matchFirstName, matchLastName, matchGender, matchAge, matchAboutMe, matchPreferredGender, matchCity, matchState));
+              matches.add(Profile(matchUid, matchBadges, matchFirstName, matchLastName, matchGender, matchAge, matchAboutMe, matchPreferredGender, distance));
           }
         }
       }).then((_) {

@@ -6,6 +6,7 @@ to be dislayed to other users when there is a match or potential match.
 */
 
 class Profile {
+  String uid;             //The UID of the user as created by Firebase
   List<String> badges;    //The badges that the user has selected; stored as the names of the icons internally
   String firstName;       //The user's first name
   String lastName;        //The user's last name
@@ -15,8 +16,7 @@ class Profile {
 
   String preferredGender; //The preferred gender of the user
 
-  String city;            //The city that the user lives in
-  String state;           //The state that the user lives in
+  double distance;        //The distance from the searching user that a match is
 
-  Profile(this.badges, this.firstName, this.lastName, this.gender, this.age,  this.aboutMe, this.preferredGender, this.city, this.state);
+  Profile(this.uid, this.badges, this.firstName, this.lastName, this.gender, this.age,  this.aboutMe, this.preferredGender, this.distance);
 }
