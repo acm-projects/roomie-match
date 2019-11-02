@@ -124,7 +124,7 @@ class _ProfileCreationScreenState extends State<ProfileCreationScreen> {
                     color: Colors.grey
                   ),
                   onChanged: (String newSelection) => setState(() => widget._selectedGender = newSelection),
-                  items: <String>[kGENDER_MALE, kGENDER_FEMALE, kGENDER_OTHER]
+                  items: <String>[kGENDER_MALE, kGENDER_FEMALE]
                   .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,

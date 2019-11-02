@@ -5,7 +5,6 @@ import 'package:roommate_app/constants.dart';
 import 'package:roommate_app/field_enforcer.dart';
 import 'package:roommate_app/screens/location_entry_screen.dart';
 import 'package:roommate_app/user_info.dart';
-import 'addbadges.dart';
 import 'dart:math' as math;
 
 class PreferencesScreen extends StatefulWidget {
@@ -291,6 +290,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
                 onPressed: () async {
                   final userDataCollection = Firestore.instance.collection(kUSER_INFO_COLLECTION_NAME);
 
+                  //Write the new user's info to firestore
                   await userDataCollection
                     .document(UserInformation.uid)
                     .setData({
@@ -309,7 +309,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
                       kSTATE_DOCUMENT_NAME : UserInformation.state,
                       kRADIUS_DOCUMENT_NAME : UserInformation.radius
                     }).catchError((_) {
-                      FieldEnforcer.showErrorDialog(context, "Error creating you profile");
+                      FieldEnforcer.showErrorDialog(context, "Error creating your profile");
                     });
 
                 },
