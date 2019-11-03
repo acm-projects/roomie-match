@@ -5,9 +5,12 @@ include all of the data that needs to be stored in Firestore, as things such as 
 to be dislayed to other users when there is a match or potential match.
 */
 
+import 'package:flutter/material.dart';
+
 class Profile {
   String uid;             //The UID of the user as created by Firebase
-  List<dynamic> badges;    //The badges that the user has selected; stored as the names of the icons internally
+  Image image;            //The profile image of the user
+  List<dynamic> badges;   //The badges that the user has selected; stored as the names of the icons internally
   String firstName;       //The user's first name
   String lastName;        //The user's last name
   String gender;          //The user's gender

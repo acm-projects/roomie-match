@@ -54,13 +54,13 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
     return null;
   };
 
-  RangeValues _values = RangeValues(18, 65);
+  RangeValues _values = RangeValues(18, 40);
   var _isSelected1 = false;
   var _isSelected2 = false;
   var _isSelected3 = false;
 
   static int _ageLower = 18;
-  static int _ageUpper = 65;
+  static int _ageUpper = 40;
   static int _distance = 0;
 
   @override
@@ -210,7 +210,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
                       inactiveColor: Colors.grey.shade300,
                       values: _values,
                       min: 18,
-                      max: 65,
+                      max: 40,
                       onChanged: (RangeValues values) {
                         setState(() {
                           _values = values;
@@ -291,11 +291,40 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
                 onPressed: () async {
                   final userDataCollection = Firestore.instance.collection(kUSER_INFO_COLLECTION_NAME);
 
+                  //Makes sure that the user selected a gender
+                  if (!_isSelected1 && !_isSelected2 && !_isSelected3)
+                  {
+                    FieldEnforcer.showErrorDialog(context, "Please select a preferred gender");
+                    return;
+                  }
+                  
+                  //Write the age bounds to the user info class
+                  UserInformation.preferredAgeLower = _ageLower;
+                  UserInformation.preferredAgeUpper = _ageUpper;
+
+                  //Determine which gender the user prefers based on which
+                  //If the user selected male
+                  if (_isSelected1) {
+                    UserInformation.preferredGender = kGENDER_MALE;
+                  } 
+                  //If the user selected female
+                  else if (_isSelected2) {
+                    UserInformation.preferredGender = kGENDER_FEMALE;
+                  } 
+                  //If the use selected either
+                  else {
+                    UserInformation.preferredGender = kGENDER_EITHER;
+                  }
+
+                  //Write the selected distance to the user's radius
+                  UserInformation.radius = _distance;
+
                   //Write the new user's info to firestore
                   await userDataCollection
                     .document(UserInformation.uid)
                     .setData({
                       kUID_DOCUMENT_NAME : UserInformation.uid,
+                      //TODO: write profile image
                       kMATCHES_DOCUMENT_NAME : UserInformation.matches,
                       kBADGES_DOCUMENT_NAME : UserInformation.badges,
                       kFIRST_NAME_DOCUMENT_NAME : UserInformation.firstName,

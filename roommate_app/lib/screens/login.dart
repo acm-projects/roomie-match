@@ -1,8 +1,12 @@
 //This screen lets users log in to their existing account
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:roommate_app/constants.dart';
 import 'package:roommate_app/field_enforcer.dart';
+import 'package:roommate_app/screens/test.dart';
+import 'package:roommate_app/user_info.dart';
 import 'signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -126,9 +130,40 @@ class _LoginScreenState extends State<LoginScreen> {
                       //Process the gotten user auth info
                       FirebaseUser user = authResult.user;
 
-                      //TODO: Gather the user's info from firestore
+                      //Write the uid to the UserInformation class
+                      UserInformation.uid = user.uid;
 
-                      //Navigate to the home screen
+                      //Gather this user's data from Firestore
+                      CollectionReference userDataCollection = Firestore.instance.collection(kUSER_INFO_COLLECTION_NAME);
+                      
+                      //Find this user's ID in Firestore
+                      userDataCollection.document(user.uid).get()
+                      .then((DocumentSnapshot documentSnapshot) {
+                        //Assign all of this user's Firestore fields to the UserInformation class
+                        //TODO: read profile image
+                        UserInformation.matches = documentSnapshot.data[kMATCHES_DOCUMENT_NAME];
+                        UserInformation.badges = documentSnapshot.data[kBADGES_DOCUMENT_NAME];
+                        UserInformation.firstName = documentSnapshot.data[kFIRST_NAME_DOCUMENT_NAME];
+                        UserInformation.lastName = documentSnapshot.data[kLAST_NAME_DOCUMENT_NAME];
+                        UserInformation.gender = documentSnapshot.data[kGENDER_DOCUMENT_NAME];
+                        UserInformation.age = documentSnapshot.data[kAGE_DOCUMENT_NAME];
+                        UserInformation.aboutMe = documentSnapshot.data[kABOUT_ME_DOCUMENT_NAME];
+                        UserInformation.preferredGender = documentSnapshot[kPREFERRED_GENDER_DOCUMENT_NAME];
+                        UserInformation.preferredAgeLower = documentSnapshot[kPREFERRED_AGE_LOWER_DOCUMENT_NAME];
+                        UserInformation.preferredAgeUpper = documentSnapshot[kPREFERRED_AGE_UPPER_DOCUMENT_NAME];
+                        UserInformation.city = documentSnapshot.data[kCITY_DOCUMENT_NAME];
+                        UserInformation.state = documentSnapshot.data[kSTATE_DOCUMENT_NAME];
+                        UserInformation.radius = documentSnapshot.data[kRADIUS_DOCUMENT_NAME];
+                      }).catchError((_) {
+                        FieldEnforcer.showErrorDialog(context, "Could not connect to databse. Check your network connection and try again");
+                      });
+
+                      //Navigate to the matches screen
+                      Navigator.push(
+                        context,
+                        //TEST ROUTING
+                        MaterialPageRoute(builder: (context) => Test())
+                      );
                     }).catchError((_) {
                       FieldEnforcer.showErrorDialog(context, "Invalid email or password");
                     });

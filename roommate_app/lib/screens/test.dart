@@ -30,6 +30,23 @@ class Test extends StatelessWidget {
     });
   }
 
+  void testLoginDataWriting() {
+    print("UID: ${UserInformation.uid}");
+    print("Matches: ${UserInformation.matches}");
+    print("Badges: ${UserInformation.badges}");
+    print("First Name: ${UserInformation.firstName}");
+    print("Last Name: ${UserInformation.lastName}");
+    print("Gender: ${UserInformation.gender}");
+    print("Age: ${UserInformation.age}");
+    print("About me: ${UserInformation.aboutMe}");
+    print("Preferred Gender: ${UserInformation.preferredGender}");
+    print("Pref. Age Lower: ${UserInformation.preferredAgeLower}");
+    print("Pref. Age Upper: ${UserInformation.preferredAgeUpper}");
+    print("City: ${UserInformation.city}");
+    print("State: ${UserInformation.state}");
+    print("Radius: ${UserInformation.radius}");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +55,7 @@ class Test extends StatelessWidget {
         child: FlatButton(
           child: Text("Test"),
             onPressed: () {
-              print("PRESS");
-              print(UserInformation.city);
-              _testMatchAlgorithm();
+              testLoginDataWriting();
           }
         )
       )
