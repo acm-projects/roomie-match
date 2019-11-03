@@ -3,13 +3,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:roommate_app/screens/location_entry_screen.dart';
-import 'package:roommate_app/screens/preferences.dart';
+import 'package:roommate_app/user_info.dart';
 import 'aboutme.dart';
-import 'preferences.dart';
 
 abstract class BadgeSelectionInformation {
   static final int MAX_NUMBER_BADGES = 5; //The maximum number of badges that can be selected
-  static List<String> badges = List();    //A list of file paths containing the selected bages
+  static List<String> badges = List();
+
 }
 
 //Custom widget for selecting badges
@@ -74,6 +74,11 @@ class AddBadgesScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          //Write the selected badges to UserInformation
+          UserInformation.badges = BadgeSelectionInformation.badges;
+
+          print("BADGES : ${UserInformation.badges}");
+
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => LocationEntryScreen())
@@ -86,12 +91,21 @@ class AddBadgesScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
             child: Text(
               "Add badges",
                 style: TextStyle(
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 0, 15, 25),
+            child: Text(
+              "Select at most ${BadgeSelectionInformation.MAX_NUMBER_BADGES} badges",
+                style: TextStyle(
+                fontSize: 15.0,
               ),
             ),
           ),
@@ -193,7 +207,28 @@ class AddBadgesScreen extends StatelessWidget {
             children: <Widget>[
               //Lifestyle icons
               //TODO: replace with hobbies badges
-              BadgeButton("assets/images/badges/religion/angel.png"),
+              BadgeButton("assets/images/badges/hobbies/001-gardening.png"),
+              BadgeButton("assets/images/badges/hobbies/009-keyboard.png"),
+              BadgeButton("assets/images/badges/hobbies/011-gaming.png"),
+              BadgeButton("assets/images/badges/hobbies/013-baking.png"),
+              BadgeButton("assets/images/badges/hobbies/014-photo camera.png"),
+              BadgeButton("assets/images/badges/hobbies/015-sewing machine.png"),
+              BadgeButton("assets/images/badges/hobbies/016-bungee jumping.png"),
+              BadgeButton("assets/images/badges/hobbies/018-knitting.png"),
+              BadgeButton("assets/images/badges/hobbies/020-notebook.png"),
+              BadgeButton("assets/images/badges/hobbies/024-woodworking.png"),
+              BadgeButton("assets/images/badges/hobbies/026-astronomy.png"),
+              BadgeButton("assets/images/badges/hobbies/029-painting.png"),
+              BadgeButton("assets/images/badges/hobbies/030-camping.png"),
+              BadgeButton("assets/images/badges/hobbies/034-pottery.png"),
+              BadgeButton("assets/images/badges/hobbies/036-scuba diving.png"),
+              BadgeButton("assets/images/badges/hobbies/041-blacksmith.png"),
+              BadgeButton("assets/images/badges/hobbies/042-paintball.png"),
+              BadgeButton("assets/images/badges/hobbies/048-hot air balloon.png"),
+              BadgeButton("assets/images/badges/hobbies/049-theatre.png"),
+              BadgeButton("assets/images/badges/hobbies/087-baseball card.png"),
+              BadgeButton("assets/images/badges/hobbies/092-travel.png"),
+              BadgeButton("assets/images/badges/hobbies/100-movies.png"),
               ],
             ),
             Padding(

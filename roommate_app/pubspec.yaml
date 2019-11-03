@@ -54,6 +54,7 @@ flutter:
     - assets/images/badges/sports/
     - assets/images/badges/religion/
     - assets/images/badges/weather/
+    - assets/images/badges/hobbies/
 
   uses-material-design: true
 
